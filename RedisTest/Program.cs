@@ -2,12 +2,11 @@
 using RedisTest.Redis;
 using RedisTest.Stub;
 
-//Setup
-
 //Get Mock list
 var simpleItems = SimpleRedisCacheEntry.GenerateRandom(numberOfEntries: 80000).ToList();
 var complexItems = ComplexRedisCacheEntry.GenerateRandom(numberOfEntries: 20000).ToList();
 
+//Execute tests
 GenerateTests(simpleItems);
 GenerateTests(complexItems);
 
