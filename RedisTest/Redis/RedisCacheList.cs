@@ -1,6 +1,6 @@
 ﻿namespace RedisTest.Redis
 {
-    internal class RedisCacheList : RedisCacheBase, IRedisCacheCollection
+    public class RedisCacheList : RedisCacheBase, IRedisCacheCollection
     {
         public RedisCacheList(string redisServer, string password = "", int redisDatabaseId = 0) : base(redisServer, password, redisDatabaseId)
         {
@@ -8,7 +8,7 @@
 
         public bool SetCollection<T>(string key, IEnumerable<T> cacheObject, TimeSpan expiryTime) where T : IRedisHashEntry
         {
-            RedisDatabase.ListLeftPush(key, cacheObject.Select(itm => itm.ToRedisValue()).ToArray());
+            RedisDatabase.ListRightPush(key, cacheObject.Select(itm => itm.ToRedisValue()).ToArray());
             return RedisDatabase.KeyExpire(key, expiryTime);
         }
 
@@ -17,10 +17,10 @@
             var result = RedisDatabase.ListRange(cacheKey);
             if (result.Length > 0)
             {
-                var items = result.ToList<T>().ToList();
+                var items = result.ToList<T>();
                 return items;
             }
-            return Array.Empty<T>(); ;
+            return Array.Empty<T>();
         }
 
         public IEnumerable<T> GetOrSetCollection<T>(string cacheKey, TimeSpan cachePeriod, Func<IEnumerable<T>> cacheNotAvailableFunc) where T : IRedisHashEntry
@@ -39,7 +39,9 @@
 
         public IEnumerable<T> GetItemsFromCollection<T>(string collectionCacheKey, params int[] itemIds) where T : IRedisHashEntry
         {
-            return Array.Empty<T>(); ;
+            var result = GetCollection<T>(collectionCacheKey);
+            
+            return result.Where(item => itemIds.Contains(item.Id)).ToList();
         }
     }
 }

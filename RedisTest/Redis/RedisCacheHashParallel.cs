@@ -2,7 +2,7 @@
 
 namespace RedisTest.Redis
 {
-    internal class RedisCacheHashParallel : RedisCacheBase, IRedisCacheCollection
+    public class RedisCacheHashParallel : RedisCacheBase, IRedisCacheCollection
     {
         public RedisCacheHashParallel(string redisServer, string password = "", int redisDatabaseId = 0) : base(redisServer, password, redisDatabaseId) { }
 

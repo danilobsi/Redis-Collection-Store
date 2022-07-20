@@ -2,7 +2,7 @@
 
 namespace RedisTest.Stub
 {
-    internal class SimpleRedisCacheEntry : IRedisHashEntry
+    public class SimpleRedisCacheEntry : IRedisHashEntry
     {
         public int Id { get; init; }
         public string Name { get; init; }

@@ -1,7 +1,7 @@
 ﻿
 namespace RedisTest
 {
-    internal class Utils
+    public class Utils
     {
         public static string RandomString(int length)
         {

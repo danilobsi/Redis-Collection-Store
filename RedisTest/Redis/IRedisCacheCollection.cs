@@ -1,6 +1,6 @@
 ﻿namespace RedisTest.Redis
 {
-    internal interface IRedisCacheCollection
+    public interface IRedisCacheCollection
     {
         bool SetCollection<T>(string key, IEnumerable<T> cacheObject, TimeSpan expiryTime) where T : IRedisHashEntry;
 
