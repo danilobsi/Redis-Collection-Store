@@ -51,3 +51,57 @@ static void GenerateTests<T>(List<T> items) where T : IRedisHashEntry
     DSBenchmark.Print(() => redisSet.Get<IEnumerable<SimpleRedisCacheEntry>>(setCacheKey).Where(i => randomIdList.Contains(i.Id)), $"GetItems({arraySize})");
     Console.WriteLine();
 }
+
+//using RedisTest.Redis;
+
+//const string cacheKey = "myRedisHashKey";
+
+////Creates a new redis cache instance 
+//var cacheInstance = new RedisHash("127.0.0.1");
+
+////Create the employee instances
+//var employeeJohn = new Employee
+//{
+//    Id = 1,
+//    Name = "John White",
+//    UserName = "john.white"
+//};
+
+//var employeeJack = new Employee
+//{
+//    Id = 2,
+//    Name = "Jack Black",
+//    UserName = "jack.black"
+//};
+
+//var employeeLucas = new Employee
+//{
+//    Id = 3,
+//    Name = "Lucas Brown",
+//    UserName = "lucas.brown"
+//};
+
+////Sets the employees in the collection
+//cacheInstance.SetCollection(
+//    cacheKey, 
+//    TimeSpan.FromMinutes(5),
+//    new List<(string, Employee)>
+//    {
+//        (employeeJohn.UserName, employeeJohn),
+//        (employeeJack.UserName, employeeJack),
+//        (employeeLucas.UserName, employeeLucas)
+//    });
+
+////Gets all the employees from Redis
+//var allEmployees = cacheInstance.GetCollection<Employee>(cacheKey);
+
+//var jackAndJohn = cacheInstance.GetItemsFromCollection<Employee>(cacheKey, "jack.black", "john.white");
+
+//Console.ReadLine();
+
+//public class Employee
+//{
+//    public int Id { get; init; }
+//    public string Name { get; init; }
+//    public string UserName { get; init; }
+//}
